@@ -6,7 +6,7 @@ import java.util.List;
 import java.lang.StringBuilder;
 
 public class Main {
-    static StringBuilder builder;
+    static StringBuilder builder = new StringBuilder();
 
     public static void main(String[] args) {
 
@@ -29,41 +29,33 @@ public class Main {
                 "C:/Users/Виталий/netology/Games/temp/temp.txt");
 
         createFile(folders);
-
+        creatLog(builder);
     }
 
     public static void createDirectory(List<String> directories) {
         Date date = new Date();
-        StringBuilder builder = new StringBuilder();
-
         for (int i = 0; i < directories.size(); i++) {
             File f = new File(directories.get(i));
             boolean created = f.mkdir();
             if (created) {
                 builder.append(date).append(" папка ").append(directories.get(i)).append(" успешно создана ").append("\n");
-
             } else builder.append(date).append(" папка ").append(directories.get(i)).append(" не создана ").append("\n");
-
         }
-        creatLog(builder);
     }
 
     public static void createFile(List<String> folders) {
-        StringBuilder builder = new StringBuilder();
         for (int j = 0; j < folders.size(); j ++) {
             File newFile = new File(folders.get(j));
             Date date = new Date();
-
             try {
                 boolean created = newFile.createNewFile();
                 if (created) {
                     builder.append(date).append(" файл ").append(folders.get(j)).append(" успешно создана").append("\n");
                 } else builder.append(date).append(" файл ").append(folders.get(j)).append(" не создан").append("\n");
-
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-        }creatLog(builder);
+        }
     }
 
     public static void creatLog(StringBuilder builder) {
